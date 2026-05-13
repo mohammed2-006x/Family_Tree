@@ -42,6 +42,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.rbMale = new System.Windows.Forms.RadioButton();
             this.rbFemale = new System.Windows.Forms.RadioButton();
+            this.ProBDeletingNodes = new System.Windows.Forms.ProgressBar();
+            this.lblCompletedProgress = new System.Windows.Forms.Label();
+            this.lblDeletion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // imageList1
@@ -67,18 +70,18 @@
             this.treeView1.Font = new System.Drawing.Font("Tahoma", 20F);
             this.treeView1.ImageIndex = 0;
             this.treeView1.ImageList = this.imageList1;
-            this.treeView1.Location = new System.Drawing.Point(38, 188);
+            this.treeView1.Location = new System.Drawing.Point(19, 188);
             this.treeView1.Name = "treeView1";
             this.treeView1.SelectedImageIndex = 0;
-            this.treeView1.Size = new System.Drawing.Size(629, 491);
+            this.treeView1.Size = new System.Drawing.Size(692, 491);
             this.treeView1.TabIndex = 1;
             // 
             // btnAddRoot
             // 
             this.btnAddRoot.Font = new System.Drawing.Font("Algerian", 17F);
-            this.btnAddRoot.Location = new System.Drawing.Point(687, 364);
+            this.btnAddRoot.Location = new System.Drawing.Point(745, 364);
             this.btnAddRoot.Name = "btnAddRoot";
-            this.btnAddRoot.Size = new System.Drawing.Size(289, 49);
+            this.btnAddRoot.Size = new System.Drawing.Size(244, 49);
             this.btnAddRoot.TabIndex = 2;
             this.btnAddRoot.Text = " Add Root";
             this.btnAddRoot.UseVisualStyleBackColor = true;
@@ -87,9 +90,9 @@
             // btnAddChild
             // 
             this.btnAddChild.Font = new System.Drawing.Font("Algerian", 17F);
-            this.btnAddChild.Location = new System.Drawing.Point(998, 364);
+            this.btnAddChild.Location = new System.Drawing.Point(1015, 364);
             this.btnAddChild.Name = "btnAddChild";
-            this.btnAddChild.Size = new System.Drawing.Size(289, 49);
+            this.btnAddChild.Size = new System.Drawing.Size(244, 49);
             this.btnAddChild.TabIndex = 3;
             this.btnAddChild.Text = " ADD CHILD";
             this.btnAddChild.UseVisualStyleBackColor = true;
@@ -170,12 +173,49 @@
             this.rbFemale.Text = "Female";
             this.rbFemale.UseVisualStyleBackColor = true;
             // 
+            // ProBDeletingNodes
+            // 
+            this.ProBDeletingNodes.BackColor = System.Drawing.Color.Crimson;
+            this.ProBDeletingNodes.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.ProBDeletingNodes.Location = new System.Drawing.Point(294, 157);
+            this.ProBDeletingNodes.Name = "ProBDeletingNodes";
+            this.ProBDeletingNodes.Size = new System.Drawing.Size(306, 10);
+            this.ProBDeletingNodes.Step = 1;
+            this.ProBDeletingNodes.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
+            this.ProBDeletingNodes.TabIndex = 11;
+            this.ProBDeletingNodes.Visible = false;
+            // 
+            // lblCompletedProgress
+            // 
+            this.lblCompletedProgress.AutoSize = true;
+            this.lblCompletedProgress.Font = new System.Drawing.Font("Tahoma", 20F);
+            this.lblCompletedProgress.Location = new System.Drawing.Point(603, 141);
+            this.lblCompletedProgress.Name = "lblCompletedProgress";
+            this.lblCompletedProgress.Size = new System.Drawing.Size(70, 41);
+            this.lblCompletedProgress.TabIndex = 12;
+            this.lblCompletedProgress.Text = "0%";
+            this.lblCompletedProgress.Visible = false;
+            // 
+            // lblDeletion
+            // 
+            this.lblDeletion.AutoSize = true;
+            this.lblDeletion.Font = new System.Drawing.Font("Tahoma", 16F);
+            this.lblDeletion.Location = new System.Drawing.Point(29, 144);
+            this.lblDeletion.Name = "lblDeletion";
+            this.lblDeletion.Size = new System.Drawing.Size(256, 33);
+            this.lblDeletion.TabIndex = 13;
+            this.lblDeletion.Text = "Deletion In Progress";
+            this.lblDeletion.Visible = false;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Crimson;
             this.ClientSize = new System.Drawing.Size(1312, 700);
+            this.Controls.Add(this.lblDeletion);
+            this.Controls.Add(this.lblCompletedProgress);
+            this.Controls.Add(this.ProBDeletingNodes);
             this.Controls.Add(this.rbFemale);
             this.Controls.Add(this.rbMale);
             this.Controls.Add(this.label2);
@@ -208,6 +248,9 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.RadioButton rbMale;
         private System.Windows.Forms.RadioButton rbFemale;
+        private System.Windows.Forms.ProgressBar ProBDeletingNodes;
+        private System.Windows.Forms.Label lblCompletedProgress;
+        private System.Windows.Forms.Label lblDeletion;
     }
 }
 

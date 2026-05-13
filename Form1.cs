@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -58,7 +59,7 @@ namespace WindowsFormsApp1
 
             if (treeView1.SelectedNode == null)
             {
-                MessageBox.Show("Selected Father To Add Child"); return;
+                MessageBox.Show("Selecte Father To Add Child"); return;
             }
 
 
@@ -88,24 +89,94 @@ namespace WindowsFormsApp1
             treeView1.SelectedNode.Remove();
         }
 
+        private short CountNumberOfNodeChecked(TreeNodeCollection nodes)
+        {
+            short Count = 0;
+
+            foreach (TreeNode node in nodes)
+            {
+                if (node.Checked)
+                {
+                    Count++;
+                }
+
+                if (node.Nodes.Count > 0)
+                {
+                    Count += CountNumberOfNodeChecked(node.Nodes);
+                }
+
+            }
+            return Count;
+        }
+
         private void btnRemoveChecked_Click(object sender, EventArgs e)
         {
-          RemoveCheckedNodes(treeView1.Nodes);
+            if (treeView1.Nodes.Count == 0)
+            {
+                MessageBox.Show("There is No Node To Remove");
+                return;
+            }
+
+            if (CountNumberOfNodeChecked(treeView1.Nodes) == 0)
+            {
+                return;
+            }
+
+            ProgressBarProcessing();
+
+            RemoveCheckedNodes(treeView1.Nodes);
         }
 
         private void RemoveCheckedNodes(TreeNodeCollection nodes)
         {
+
+
             for (int i = nodes.Count - 1; i >= 0; i--)
             {
-                if (nodes[i].Nodes.Count>0)
+
+                if (nodes[i].Nodes.Count > 0)
                 {
                     RemoveCheckedNodes(nodes[i].Nodes);
                 }
 
-                if(nodes[i].Checked)
-                nodes.RemoveAt(i);
-                
+                if (nodes[i].Checked)
+                    nodes.RemoveAt(i);
+
             }
+
+        }
+
+        private void ProgressBarProcessing()
+        {
+
+            ProBDeletingNodes.Value = 0;
+            lblCompletedProgress.Text = "0%";
+            lblDeletion.Visible = true;
+            lblCompletedProgress.Visible = true;
+            ProBDeletingNodes.Visible = true;
+
+            for (short i = 1; i <= 100; i++)
+            {
+
+                Thread.Sleep(1);
+
+                ProBDeletingNodes.Value = i;
+
+                lblCompletedProgress.Text = i + "%";
+
+                ProBDeletingNodes.Refresh();
+
+                lblCompletedProgress.Refresh();
+
+                lblDeletion.Refresh();
+
+            }
+
+
+            lblDeletion.Visible = false;
+            lblCompletedProgress.Visible = false;
+            ProBDeletingNodes.Visible = false;
+
         }
 
         private void btnClearTree_Click(object sender, EventArgs e)
